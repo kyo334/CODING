@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Letter ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    overflow:hidden;
+}
+
+/* Floating Hearts */
+.hearts{
+    position:absolute;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+.hearts span{
+    position:absolute;
+    bottom:-50px;
+    font-size:20px;
+    animation:float 10s linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
+}
+
+.container{
+    text-align:center;
+    z-index:10;
+}
+
+button{
+    padding:15px 35px;
+    border:none;
+    border-radius:30px;
+    background:#ff4d6d;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+.letter{
+    display:none;
+    margin-top:20px;
+    max-width:500px;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 10px 20px rgba(0,0,0,.2);
+    animation:fade .8s;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+h2{
+    color:#ff4d6d;
+    margin-bottom:15px;
+}
+
+p{
+    line-height:1.7;
+    color:#444;
+    white-space:pre-line;
+}
+</style>
+
+</head>
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="container">
+
+    <button id="openBtn">💌 Open My Letter</button>
+
+    <div class="letter" id="letter">
+        <h2>Hi LOVE ❤️</h2>
+        <p id="message"></p>
+    </div>
+
+</div>
+
+<script>
+// Floating Hearts
+const hearts = document.getElementById("hearts");
+
+for(let i=0;i<30;i++){
+
+    const heart=document.createElement("span");
+
+    heart.innerHTML="❤️";
+
+    heart.style.left=Math.random()*100+"%";
+
+    heart.style.animationDuration=(5+Math.random()*5)+"s";
+
+    heart.style.fontSize=(15+Math.random()*20)+"px";
+
+    heart.style.animationDelay=Math.random()*5+"s";
+
+    hearts.appendChild(heart);
+
+}
+
+// Love Letter
+const button=document.getElementById("openBtn");
+const letter=document.getElementById("letter");
+const message=document.getElementById("message");
+
+const text=`
+
+Hi,
+
+Hindi ko alam kung kailan nagsimula, pero habang tumatagal,
+napapansin kong espesyal ka sa akin.
+
+Sa bawat ngiti mo, parang gumagaan ang araw ko.
+Sa bawat simpleng usap natin, may saya akong hindi maipaliwanag.
+
+Hindi ko man alam kung pareho tayo ng nararamdaman,
+gusto ko lang maging tapat sa sarili ko.
+
+Salamat dahil naging inspirasyon ka sa mga ordinaryong araw ko.
+Sana balang araw ay mas makilala pa natin ang isa't isa
+at makagawa ng maraming masasayang alaala.
+
+Take care palagi at huwag kang magsawang ngumiti,
+dahil bagay na bagay iyon sa'yo.
+
+❤️ From your Love ❤️
+
+`;
+
+let i=0;
+
+function typeWriter(){
+
+    if(i<text.length){
+
+        message.innerHTML+=text.charAt(i);
+
+        i++;
+
+        setTimeout(typeWriter,35);
+
+    }
+
+}
+
+button.addEventListener("click",()=>{
+
+    button.style.display="none";
+
+    letter.style.display="block";
+
+    typeWriter();
+
+});
+</script>
+
+</body>
+</html>
